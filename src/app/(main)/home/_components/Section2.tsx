@@ -149,7 +149,7 @@ const Section2 = () => {
                   </div>
   
                   <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                    "{testimonial.text}"
+                    {testimonial.text}
                   </p>
   
                   <div className="flex items-center gap-4">

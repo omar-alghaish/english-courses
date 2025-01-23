@@ -1,5 +1,6 @@
 'use client'
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type AnimatedMessagesProps = {
   messages: string[];
@@ -12,62 +13,40 @@ const AnimatedMessages: React.FC<AnimatedMessagesProps> = ({
   duration = 3,
   className = "",
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (!messages.length || !containerRef.current || typeof window === 'undefined') return;
-    const gsap = (window as any).gsap;
+    if (messages.length <= 1) return;
 
-    if (!gsap) {
-      console.error('GSAP not loaded!');
-      return;
-    }
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % messages.length);
+    }, (duration + 1) * 1000); // +1 second for animation overlap
 
-    const messageElements = Array.from(containerRef.current.children) as HTMLElement[];
-    
-    // Handle single message case
-    if (messages.length === 1) {
-      gsap.set(messageElements[0], { opacity: 1 });
-      return;
-    }
-
-    // Set initial state
-    gsap.set(messageElements, { opacity: 0 });
-    gsap.set(messageElements[0], { opacity: 1});
-
-    const timeline = gsap.timeline({ repeat: -1, });
-
-    messages.forEach((_, index) => {
-      const nextIndex = (index + 1) % messages.length;
-      
-      timeline.to(messageElements[index], {
-        opacity: 0,
-        duration: 1,
-        ease: "power2.inOut",
-      }, `+=${duration}`) // Wait for duration before fading out
-      .to(messageElements[nextIndex], {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.inOut",
-      }, "-=0.5"); // Overlap fade-out and fade-in
-    });
-
-    return () => {
-      timeline.kill();
-    };
-  }, [messages, duration]);
+    return () => clearInterval(interval);
+  }, [messages.length, duration]);
 
   return (
-    <div className={`relative h-10 ${className} `}>
-      <div ref={containerRef} className="h-full w-full">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className="absolute top-0 left-0 h-10 w-full flex items-center justify-center text-center opacity-0"
-          >
-            {message}
-          </div>
-        ))}
+    <div className={`relative h-10 ${className}`}>
+      <div className="h-full w-full">
+        <AnimatePresence mode='wait'>
+          {messages.map((message, index) => (
+            activeIndex === index && (
+              <motion.div
+                key={index}
+                className="absolute top-0 left-0 h-10 w-full flex items-center justify-center text-center"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ 
+                  duration: 0.5,
+                  ease: "easeInOut",
+                }}
+              >
+                {message}
+              </motion.div>
+            )
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

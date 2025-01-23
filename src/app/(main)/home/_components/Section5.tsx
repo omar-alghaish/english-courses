@@ -1,6 +1,5 @@
 'use client'
 import * as React from "react"
-import { ChevronDown } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { motion } from "framer-motion"
 
@@ -101,7 +100,7 @@ const Section5 = () => {
             className="mt-12 text-center"
           >
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Still have questions? We're here to help!
+              Still have questions? Wea are here to help!
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { BadgeCheck, Zap, Clock, Users, Globe, Video } from 'lucide-react'
+import { BadgeCheck,  Globe } from 'lucide-react'
 
 const Section4 = () => {
   const [annualBilling, setAnnualBilling] = useState(true)

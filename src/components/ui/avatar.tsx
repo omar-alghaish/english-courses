@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import Image from "next/image";
 
 type AvatarProps = {
   image?: string; // URL of the avatar image
@@ -37,7 +38,7 @@ const Avatar: React.FC<AvatarProps> = ({
       )}
     >
       {image ? (
-        <img
+        <Image
           src={image}
           alt={fallback}
           className="object-cover w-full h-full"

@@ -3,7 +3,6 @@ import AnimatedMessages from "@/components/animatedMessages";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { AppSidebar } from "@/components/sidebar/AppSidebar";
-import Avatar from "@/components/ui/avatar";
 
 // import {
 //   Breadcrumb,
@@ -17,10 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 // import { AvatarFallback } from "@radix-ui/react-avatar";
-import { Bell } from "lucide-react";
 
 export default function DashboardLayout({
   children,

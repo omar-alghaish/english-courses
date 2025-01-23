@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { Star, Clock, Video, Users, BookOpen, Search, Filter } from 'lucide-react'
+import { Star, Clock, Users, BookOpen, Search, Filter } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 
@@ -85,7 +85,7 @@ const courses = [
     price: 99.99,
     image: "bg-gradient-to-tr from-purple-400 to-pink-500"
   },
-  
+
   // Add more courses...
 ]
 
