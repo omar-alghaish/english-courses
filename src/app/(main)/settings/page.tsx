@@ -1,161 +1,133 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Sun, Moon, Monitor, Lock, User, Bell, Palette } from 'lucide-react'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTheme } from '@/redux/features/theme/themeSlice'
+import { RootState } from '@/redux/store/store'
+import { selectCurrentTheme } from '@/redux/features/theme/themeSelector'
 
 const SettingsPage = () => {
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('light')
-  const [notifications, setNotifications] = useState(true)
-  const [twoFactor, setTwoFactor] = useState(false)
+  const dispatch = useDispatch()
+  const currentTheme = useSelector((state: RootState) => state.theme.currentTheme)
+  const effectiveTheme = useSelector(selectCurrentTheme)
+  const [notifications, setNotifications] = React.useState(true)
+  const [twoFactor, setTwoFactor] = React.useState(false)
 
+  // Apply theme class to HTML element
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'system' || 'system'
-    setTheme(savedTheme)
-    
-    if (savedTheme === 'system') {
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      document.documentElement.classList.toggle('dark', systemDark)
-    } else {
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
-    }
-  }, [])
+    document.documentElement.classList.toggle('dark', effectiveTheme === 'dark')
+  }, [effectiveTheme])
 
-  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
-    setTheme(newTheme)
-    localStorage.setItem('theme', newTheme)
-    
-    if (newTheme === 'system') {
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      document.documentElement.classList.toggle('dark', systemDark)
-    } else {
-      document.documentElement.classList.toggle('dark', newTheme === 'dark')
-    }
+  const handleThemeChange = (newTheme: 'light' | 'dark' | 'device') => {
+    dispatch(setTheme(newTheme))
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6 md:p-12">
-      <div className="max-w-4xl mx-auto space-y-12">
+    <div className="min-h-screen bg-background p-6 md:p-12">
+      <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="space-y-2"
         >
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Settings</h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Manage your account preferences and settings
+          <h1 className="text-3xl font-bold text-foreground">Account Settings</h1>
+          <p className="text-muted-foreground">
+            Manage your preferences and security settings
           </p>
         </motion.div>
 
         {/* Theme Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <Palette className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Appearance
-            </h2>
-          </div>
+        // Theme Section
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.1 }}
+  className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border shadow-sm"
+>
+  <div className="flex items-center gap-3 mb-6">
+    <Palette className="w-6 h-6 text-primary" />
+    <h2 className="text-xl font-semibold text-foreground">
+      Appearance
+    </h2>
+  </div>
 
-          <div className="space-y-6">
-            <div className="flex flex-col gap-4">
-              <Label className="text-gray-700 dark:text-gray-300">Theme</Label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button
-                  onClick={() => handleThemeChange('light')}
-                  className={`p-4 rounded-lg border-2 transition-all ${
-                    theme === 'light'
-                      ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-indigo-200'
-                  }`}
-                >
-                  <div className="space-y-2">
-                    <Sun className="w-6 h-6 text-gray-900 dark:text-white" />
-                    <p className="text-gray-900 dark:text-white">Light</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Bright color scheme
-                    </p>
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => handleThemeChange('dark')}
-                  className={`p-4 rounded-lg border-2 transition-all ${
-                    theme === 'dark'
-                      ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-indigo-200'
-                  }`}
-                >
-                  <div className="space-y-2">
-                    <Moon className="w-6 h-6 text-gray-900 dark:text-white" />
-                    <p className="text-gray-900 dark:text-white">Dark</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Dark color scheme
-                    </p>
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => handleThemeChange('system')}
-                  className={`p-4 rounded-lg border-2 transition-all ${
-                    theme === 'system'
-                      ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-indigo-200'
-                  }`}
-                >
-                  <div className="space-y-2">
-                    <Monitor className="w-6 h-6 text-gray-900 dark:text-white" />
-                    <p className="text-gray-900 dark:text-white">System</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Follow system settings
-                    </p>
-                  </div>
-                </button>
-              </div>
+  <div className="space-y-6">
+    <div className="flex flex-col gap-4">
+      <Label className="text-foreground">Interface Theme</Label>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { value: 'light' as 'light', icon: Sun, label: 'Light', desc: 'Bright theme' },
+          { value: 'dark' as 'dark', icon: Moon, label: 'Dark', desc: 'Dark theme' },
+          { value: 'device' as 'device', icon: Monitor, label: 'System', desc: 'Follow system setting' }
+        ].map((themeOption) => (
+          <motion.button
+            key={themeOption.value}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => handleThemeChange(themeOption.value)}
+            className={`p-4 rounded-lg border-2 transition-all ${
+              currentTheme === themeOption.value
+                ? 'border-primary bg-primary/10'
+                : 'border-muted hover:border-accent'
+            }`}
+          >
+            <div className="space-y-2">
+              <themeOption.icon className="w-6 h-6 text-foreground" />
+              <p className="text-foreground">{themeOption.label}</p>
+              <p className="text-sm text-muted-foreground">
+                {themeOption.desc}
+              </p>
             </div>
-          </div>
-        </motion.div>
+          </motion.button>
+        ))}
+      </div>
+    </div>
+  </div>
+</motion.div>
+
 
         {/* Account Settings */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm"
+          className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border shadow-sm"
         >
           <div className="flex items-center gap-3 mb-6">
-            <User className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Account Settings
+            <User className="w-6 h-6 text-primary" />
+            <h2 className="text-xl font-semibold text-foreground">
+              Account Details
             </h2>
           </div>
 
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <Label className="text-gray-700 dark:text-gray-300">Email</Label>
-                <p className="text-gray-500 dark:text-gray-400">
+                <Label className="text-foreground">Email Address</Label>
+                <p className="text-muted-foreground">
                   user@example.com
                 </p>
               </div>
-              <Button variant="outline">Change Email</Button>
+              <Button variant="outline" className="hover:bg-accent">
+                Update Email
+              </Button>
             </div>
 
             <div className="flex items-center justify-between">
               <div>
-                <Label className="text-gray-700 dark:text-gray-300">Password</Label>
-                <p className="text-gray-500 dark:text-gray-400">
+                <Label className="text-foreground">Password</Label>
+                <p className="text-muted-foreground">
                   Last changed 3 months ago
                 </p>
               </div>
-              <Button variant="outline">Change Password</Button>
+              <Button variant="outline" className="hover:bg-accent">
+                Change Password
+              </Button>
             </div>
           </div>
         </motion.div>
@@ -165,27 +137,28 @@ const SettingsPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm"
+          className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border shadow-sm"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Lock className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <Lock className="w-6 h-6 text-primary" />
+            <h2 className="text-xl font-semibold text-foreground">
               Security
             </h2>
           </div>
 
           <div className="flex items-center justify-between">
             <div>
-              <Label className="text-gray-700 dark:text-gray-300">
+              <Label className="text-foreground">
                 Two-factor Authentication
               </Label>
-              <p className="text-gray-500 dark:text-gray-400">
-                Add an extra layer of security
+              <p className="text-muted-foreground">
+                Enhanced account protection
               </p>
             </div>
             <Switch
               checked={twoFactor}
               onCheckedChange={setTwoFactor}
+              className="data-[state=checked]:bg-primary"
             />
           </div>
         </motion.div>
@@ -195,27 +168,28 @@ const SettingsPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm"
+          className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border shadow-sm"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Bell className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <Bell className="w-6 h-6 text-primary" />
+            <h2 className="text-xl font-semibold text-foreground">
               Notifications
             </h2>
           </div>
 
           <div className="flex items-center justify-between">
             <div>
-              <Label className="text-gray-700 dark:text-gray-300">
+              <Label className="text-foreground">
                 Email Notifications
               </Label>
-              <p className="text-gray-500 dark:text-gray-400">
-                Receive important updates
+              <p className="text-muted-foreground">
+                Important updates and reminders
               </p>
             </div>
             <Switch
               checked={notifications}
               onCheckedChange={setNotifications}
+              className="data-[state=checked]:bg-primary"
             />
           </div>
         </motion.div>

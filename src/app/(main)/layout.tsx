@@ -3,6 +3,7 @@ import AnimatedMessages from "@/components/animatedMessages";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { AppSidebar } from "@/components/sidebar/AppSidebar";
+import { ThemeLoader } from "@/components/themeLoder";
 
 // import {
 //   Breadcrumb,
@@ -38,10 +39,10 @@ export default function DashboardLayout({
           messages={messages}
           duration={3}
           className="text-sm"
-        /><Separator />{" "}
+        /><Separator />
         <div className=" ">
-          
-        <Header />
+          <ThemeLoader />
+        <Header  />
           <main className="">{children}</main>
           <Footer />
         </div>

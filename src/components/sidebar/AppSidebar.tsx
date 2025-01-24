@@ -14,6 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const generalItems = [
   {
@@ -72,13 +73,13 @@ export function AppSidebar() {
               {generalItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton className="h-[45px] rounded-xl" asChild>
-                    <a
+                    <Link
                       href={item.url}
                       className="pl-6 text-[16px] text-sidebar-foreground/80"
                     >
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -118,13 +119,13 @@ export function AppSidebar() {
               {otherItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton className="h-[45px] rounded-xl" asChild>
-                    <a
+                    <Link
                       href={item.url}
                       className="pl-6 text-[16px] text-sidebar-foreground/80"
                     >
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

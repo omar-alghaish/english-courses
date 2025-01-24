@@ -1,9 +1,11 @@
 // store/store.ts
 import { configureStore } from '@reduxjs/toolkit';
-import builderReducer from "../features/builder/builderSlice"
+import builderReducer from "../features/builder/builderSlice";
+import themeReducer from "../features/theme/themeSlice";
 export const store = configureStore({
   reducer: {
     builder: builderReducer,
+    theme: themeReducer,
   },
 });
 

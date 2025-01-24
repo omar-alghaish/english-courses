@@ -23,7 +23,7 @@ const Header = () => {
       <header
         className={`flex h-16 shrink-0 items-center justify-between gap-2 ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 transition-all duration-300 ${
           isScrolled 
-            ? 'sticky left-0 right-0 top-0 mx-auto w-[96%] bg-sidebar-ring mt-[10px] rounded-2xl shadow-sm z-50'
+            ? 'sticky left-0 right-0 top-0 mx-auto bg-background mt-[10px]  shadow-sm z-50'
             : 'w-full bg-transparent '
         }`}
       >
@@ -39,10 +39,10 @@ const Header = () => {
             fallback="omar alghaish"
           />
         </div>
+          
+ 
       </header>
 
-      {/* Placeholder to prevent content jump when header becomes fixed */}
-      {!isScrolled && <div className="h-16 w-full" />}
     </>
   )
 }

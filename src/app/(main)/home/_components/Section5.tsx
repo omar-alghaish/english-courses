@@ -26,13 +26,23 @@ const faqs = [
     }
   ]
 
+
+
 const Section5 = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+    <section className=" container relative py-20 bg-background">
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-purple-100 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30" />
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-100 dark:bg-indigo-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30" />
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl opacity-30"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 12, repeat: Infinity }}
+          className="absolute bottom-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl opacity-30"
+        />
       </div>
 
       <div className="container px-4 mx-auto">
@@ -40,17 +50,24 @@ const Section5 = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-16 space-y-4"
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.span
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            className="inline-block px-6 py-2 rounded-full bg-accent/20 text-accent-foreground text-sm font-medium backdrop-blur-sm"
+          >
+            Need Help?
+          </motion.span>
+          <h2 className="text-4xl font-bold text-foreground">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Find answers to common questions about our English courses
+          <p className="text-muted-foreground text-lg">
+            Everything you need to know about our English programs
           </p>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
@@ -62,22 +79,16 @@ const Section5 = () => {
               >
                 <AccordionItem
                   value={`item-${index}`}
-                  className="group rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow"
+                  className="group rounded-2xl bg-card/50 backdrop-blur-sm border border-border hover:border-primary/30 transition-all shadow-lg hover:shadow-xl"
                 >
                   <AccordionTrigger className="flex w-full items-center justify-between p-6 text-left hover:no-underline">
-                    <motion.span className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <motion.span className="text-lg font-semibold text-foreground">
                       {faq.question}
                     </motion.span>
-                    {/* <motion.div
-                      animate={{ rotate: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-indigo-600 dark:text-indigo-400"
-                    >
-                      <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                    </motion.div> */}
+                  
                   </AccordionTrigger>
                   
-                  <AccordionContent className="px-6 pb-6 pt-0 text-gray-600 dark:text-gray-300">
+                  <AccordionContent className="px-6 pb-6 pt-0 text-muted-foreground">
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
@@ -97,15 +108,15 @@ const Section5 = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-12 text-center"
+            className="mt-12 text-center space-y-6"
           >
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Still have questions? Wea are here to help!
+            <p className="text-muted-foreground">
+              Still have questions? We are here to help!
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition-colors shadow-lg"
+              className="px-8 py-3 bg-primary text-primary-foreground rounded-xl font-semibold shadow-lg hover:bg-primary/90 transition-all"
             >
               Contact Support
             </motion.button>
