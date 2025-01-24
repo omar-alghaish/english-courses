@@ -17,6 +17,19 @@ const SettingsPage = () => {
   const [notifications, setNotifications] = React.useState(true)
   const [twoFactor, setTwoFactor] = React.useState(false)
 
+// Update your themes array type definition
+const themes: { 
+  value: 'light' | 'dark' | 'device'; 
+  icon: React.ComponentType<{ className?: string }>; // Add className prop type
+  label: string; 
+  desc: string 
+}[] = [
+  { value: 'light', icon: Sun, label: 'Light', desc: 'Bright theme' },
+  { value: 'dark', icon: Moon, label: 'Dark', desc: 'Dark theme' },
+  { value: 'device', icon: Monitor, label: 'System', desc: 'Follow system setting' }
+];
+  
+
   // Apply theme class to HTML element
   useEffect(() => {
     document.documentElement.classList.toggle('dark', effectiveTheme === 'dark')
@@ -42,7 +55,7 @@ const SettingsPage = () => {
         </motion.div>
 
         {/* Theme Section */}
-        // Theme Section
+       
 <motion.div
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
@@ -60,11 +73,7 @@ const SettingsPage = () => {
     <div className="flex flex-col gap-4">
       <Label className="text-foreground">Interface Theme</Label>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {[
-          { value: 'light' as 'light', icon: Sun, label: 'Light', desc: 'Bright theme' },
-          { value: 'dark' as 'dark', icon: Moon, label: 'Dark', desc: 'Dark theme' },
-          { value: 'device' as 'device', icon: Monitor, label: 'System', desc: 'Follow system setting' }
-        ].map((themeOption) => (
+        {themes.map((themeOption) => (
           <motion.button
             key={themeOption.value}
             whileHover={{ scale: 1.02 }}
