@@ -24,7 +24,7 @@ const generalItems = [
   },
   {
     title: "Discover",
-    url: "/discover",
+    url: "/courses",
     icon: Inbox,
   },
   {

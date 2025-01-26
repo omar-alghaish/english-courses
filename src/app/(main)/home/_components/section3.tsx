@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { BookOpen, Users, Mic, Clock, BrainCircuit, Trophy } from 'lucide-react'
+import { BookOpen,  Clock, Trophy } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const features = [
@@ -9,26 +9,26 @@ const features = [
     title: "Structured Curriculum",
     description: "Progress through 10 levels of comprehensive English mastery with our CEFR-aligned courses",
   },
-  {
-    icon: Users,
-    title: "Native Teachers",
-    description: "Live sessions with certified instructors from English-speaking countries",
-  },
-  {
-    icon: Mic,
-    title: "Speaking Practice",
-    description: "Daily conversation clubs and pronunciation workshops",
-  },
+  // {
+  //   icon: Users,
+  //   title: "Native Teachers",
+  //   description: "Live sessions with certified instructors from English-speaking countries",
+  // },
+  // {
+  //   icon: Mic,
+  //   title: "Speaking Practice",
+  //   description: "Daily conversation clubs and pronunciation workshops",
+  // },
   {
     icon: Clock,
     title: "Flexible Learning",
     description: "24/7 access to lessons with personalized scheduling",
   },
-  {
-    icon: BrainCircuit,
-    title: "AI Feedback",
-    description: "Instant grammar correction and vocabulary suggestions",
-  },
+  // {
+  //   icon: BrainCircuit,
+  //   title: "AI Feedback",
+  //   description: "Instant grammar correction and vocabulary suggestions",
+  // },
   {
     icon: Trophy,
     title: "Certification",
@@ -143,7 +143,7 @@ const Section3 = () => {
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <div className="inline-flex flex-col items-center w-[100%] mx-auto p-8 rounded-3xl bg-card border border-border shadow-2xl">
+          <div className="inline-flex flex-col items-center w-[100%] mx-auto p-8 rounded-3xl bg-card border border-border shadow-2xl ">
             <motion.h3 
               className="text-3xl font-bold text-foreground mb-4"
               whileHover={{ scale: 1.05 }}

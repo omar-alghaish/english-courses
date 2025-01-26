@@ -135,9 +135,109 @@
 // export default Section1
 
 
+// 'use client'
+// import React from 'react'
+// import { Rocket, Users,  Sparkles, Zap } from 'lucide-react'
+// import { motion } from 'framer-motion'
+
+// const Section1 = () => {
+//   const stats = [
+//     { value: '98%', label: 'Success Rate', icon: <Sparkles className="w-5 h-5" /> },
+//     { value: '4.9', label: 'Rating', icon: <Zap className="w-5 h-5" /> },
+//     { value: '50K+', label: 'Students', icon: <Users className="w-5 h-5" /> },
+//   ]
+
+//   return (
+//     <section className="relative bg-gradient-to-br from-background via-card/50 to-muted/20 bg-secondary overflow-hidden">
+//       {/* Animated background elements */}
+//       <div className="absolute inset-0 opacity-15">
+//         <div className="absolute -top-32 -left-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+//         <div className="absolute -bottom-48 -right-48 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+//       </div>
+
+//       <div className="container relative mx-auto px-4 py-24 md:py-32">
+//         <div className="grid lg:grid-cols-2 gap-16 items-center">
+//           {/* Left Content */}
+//           <motion.div 
+//             initial={{ opacity: 0, x: -40 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.8 }}
+//             className="space-y-8 z-10"
+//           >
+//             <motion.div
+//               initial={{ scale: 0.9 }}
+//               whileInView={{ scale: 1 }}
+//               className="inline-flex items-center gap-3 bg-accent/20 backdrop-blur-sm px-6 py-2 rounded-full border border-border"
+//             >
+//               <Rocket className="w-5 h-5 text-primary" />
+//               <span className="text-sm font-medium text-foreground">Next-gen language learning</span>
+//             </motion.div>
+
+//             <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+//               Speak Confidently
+//               <span className="block mt-4 bg-gradient-to-r from-primary to-accent bg-clip-text">
+//                 Think Globally
+//               </span>
+//             </h1>
+
+//             <p className="text-xl text-muted-foreground md:pr-12 leading-relaxed">
+//               Transform your language skills through AI-powered immersion and real-time cultural adaptation.
+//             </p>
+
+//             <div className="flex flex-col sm:flex-row gap-4">
+//               <motion.button
+//                 whileHover={{ scale: 1.05 }}
+//                 className="flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+//               >
+//                 Start Free Trial
+//               </motion.button>
+              
+//               <motion.button
+//                 whileHover={{ x: 5 }}
+//                 className="flex items-center gap-3 px-8 py-4 text-foreground hover:bg-accent/20 rounded-xl transition-colors border border-border"
+//               >
+//                 Explore Methods →
+//               </motion.button>
+//             </div>
+
+//             {/* Stats Grid */}
+//             <div className="grid grid-cols-3 gap-4 mt-12">
+//               {stats.map((stat, index) => (
+//                 <motion.div
+//                   key={index}
+//                   initial={{ opacity: 0, y: 20 }}
+//                   whileInView={{ opacity: 1, y: 0 }}
+//                   transition={{ delay: index * 0.1 }}
+//                   className="p-4 bg-card/50 backdrop-blur-sm border border-border rounded-xl hover:shadow-md transition-all"
+//                 >
+//                   <div className="flex items-center gap-3">
+//                     <div className="p-2 bg-primary/10 rounded-lg text-primary">
+//                       {stat.icon}
+//                     </div>
+//                     <div>
+//                       <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+//                       <div className="text-sm text-muted-foreground">{stat.label}</div>
+//                     </div>
+//                   </div>
+//                 </motion.div>
+//               ))}
+//             </div>
+//           </motion.div>
+
+//           {/* Right Content - Dynamic Geometric Design */}
+          
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+
+// export default Section1
+
+
 'use client'
 import React from 'react'
-import { Rocket, Users,  Sparkles, Zap } from 'lucide-react'
+import { Rocket, Users, Sparkles, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const Section1 = () => {
@@ -148,15 +248,31 @@ const Section1 = () => {
   ]
 
   return (
-    <section className="relative bg-gradient-to-br from-background via-card/50 to-muted/20 bg-secondary overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-15">
-        <div className="absolute -top-32 -left-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-48 -right-48 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+    <section className="relative bg-gradient-to-br from-primary/60 via-primary to-primary/60 overflow-hidden">
+      {/* Animated SVG Background */}
+      {/* <div className="absolute inset-0 opacity-20">
+        <svg 
+          viewBox="0 0 1024 1024" 
+          className="absolute w-full h-full animate-pulse-slow"
+          aria-hidden="true"
+        >
+          <circle cx="512" cy="512" r="512" fill="url(#gradient)" fillOpacity="0.5" />
+          <defs>
+            <radialGradient id="gradient" cx="0" cy="0" r="1" gradientTransform="rotate(45) scale(800)">
+              <stop offset="0.3" stopColor="#7C3AED" />
+              <stop offset="1" stopColor="#4F46E5" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+        </svg>
+      </div> */}
+
+      {/* Geometric Grid Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0  bg-[size:60px_60px]"></div>
       </div>
 
       <div className="container relative mx-auto px-4 py-24 md:py-32">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="flex flex-col gap-16 items-center text-center">
           {/* Left Content */}
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
@@ -167,56 +283,59 @@ const Section1 = () => {
             <motion.div
               initial={{ scale: 0.9 }}
               whileInView={{ scale: 1 }}
-              className="inline-flex items-center gap-3 bg-accent/20 backdrop-blur-sm px-6 py-2 rounded-full border border-border"
+              className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-lg px-6 py-2 rounded-full border border-white/20 shadow-glass"
             >
-              <Rocket className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-foreground">Next-gen language learning</span>
+              <Rocket className="w-5 h-5 text-primary-foreground" />
+              <span className="text-sm font-medium text-white">Next-gen language learning</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-              Speak Confidently
-              <span className="block mt-4 bg-gradient-to-r from-primary to-accent bg-clip-text">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+              <span className="bg-gradient-to-r from-white to-white bg-clip-text text-transparent">
+                Speak Confidently
+              </span>
+              <span className="block mt-4 bg-gradient-to-r from-white to-white bg-clip-text text-transparent">
                 Think Globally
               </span>
             </h1>
 
-            <p className="text-xl text-muted-foreground md:pr-12 leading-relaxed">
+            <p className="text-xl text-purple-100/80 md:pr-12 leading-relaxed">
               Transform your language skills through AI-powered immersion and real-time cultural adaptation.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center ">
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:shadow-glow transition-all"
               >
                 Start Free Trial
               </motion.button>
               
               <motion.button
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-3 px-8 py-4 text-foreground hover:bg-accent/20 rounded-xl transition-colors border border-border"
+                className="flex items-center gap-3 px-8 py-4 text-white hover:bg-white/10 rounded-full transition-colors border border-white/20 backdrop-blur-lg"
               >
                 Explore Methods →
               </motion.button>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-4 mt-12">
+            <div className="flex flex-col md:grid   grid-cols-3 gap-4 mt-12">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-4 bg-card/50 backdrop-blur-sm border border-border rounded-xl hover:shadow-md transition-all"
+                  className="p-4 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-white/10 transition-all group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                    <div className="p-2 bg-white/10 rounded-lg text-primary-foreground group-hover:bg-primary-foreground group-hover:text-primary transition-colors">
                       {stat.icon}
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                      <div className="text-2xl font-bold text-white">{stat.value}</div>
+                      <div className="text-sm text-purple-100/80">{stat.label}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -224,8 +343,15 @@ const Section1 = () => {
             </div>
           </motion.div>
 
-          {/* Right Content - Dynamic Geometric Design */}
-          
+          {/* Right Content - Animated Blob */}
+          {/* <div className="relative hidden lg:block">
+            <div className="relative w-full aspect-square">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full blur-3xl opacity-30 animate-pulse-slow" />
+              <div className="absolute inset-8 bg-gradient-to-br from-white/20 to-white/5 rounded-3xl backdrop-blur-2xl border border-white/20 shadow-glass-lg">
+                <div className="absolute -inset-8 bg-[url('/grid.svg')] bg-[size:60px_60px] opacity-10" />
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
     </section>

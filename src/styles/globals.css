@@ -5,18 +5,18 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
     --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 213 94% 68%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -90,5 +90,40 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    width: 100vw;
+    overflow-x: hidden;
   }
 }
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+.animate-scale-in {
+  animation: scale-in .5s ease-out;
+}
+
+.animate-scroll {
+  animation: scroll linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll-reverse linear infinite;
+}
+
+.hover\:paused:hover {
+  animation-play-state: paused;
+}
+
+
